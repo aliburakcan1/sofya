@@ -1,0 +1,376 @@
+{% extends 'app/base.html' %}
+
+{% load bootstrap4 %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{{ STATIC_URL }}style.css"/>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="masthead mb-auto">
+        <div class="inner">
+            <h3 class="masthead-brand">Wise</h3>
+            <nav class="nav nav-masthead justify-content-center">
+                <a class="nav-link active" href="#">Home</a>
+                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main id="mainId" role="main" class="inner cover">
+        <h1 class="cover-heading">Do you know which words and phrases you use mostly?</h1>
+        <p class="lead">Write your username in the text area below, wait, then you will see.</p>
+        <form method="POST" enctype="multipart/form-data">
+            <div class="input-group mb-4">
+
+
+                {% csrf_token %}
+                <input type="text" class="form-control" placeholder="Username" id="usr" name="username">
+                <!--<a href="#" onclick="$('#wordcloud').show();" class="btn btn-lg btn-secondary">Learn more</a>-->
+                <input class="btn btn-primary" onclick="$('#prgrs').show();this.disabled=true;this.form.submit();" id="nick-button" type="submit"
+                       value="Ready">
+            </div>
+        </form>
+
+
+        <div id="progress-bar-message"></div>
+        <div id="prgrs" style="display:none;height:20px" class="progress">
+            <div class="progress-bar" id="progress-bar2" role="progressbar" style="width: 0%;" aria-valuenow="25"
+                 aria-valuemin="0" aria-valuemax="100">0%
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <footer class="mastfoot mt-auto">
+        <div class="inner">
+            <p>You may be interested with something like this -> <a href="https://twitter.com/tepkiapp">@tepki</a>.</p>
+        </div>
+    </footer>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}style2.css"/>
+
+
+
+<div id="wordcloud" class="w-100" style="display:none;padding-bottom: 30px;padding-top: 30px;">
+
+
+    <div class="row">
+        <div>
+            <div class="box16">
+                <h3>Wordcloud</h3>
+                <hr/>
+                <img src="{{ STATIC_URL }}{{name}}">
+                <div class="box-content">
+                    <h3 class="title">Share via...</h3>
+                    <ul class="social">
+                        <li><a title = "Share with facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                        <li><a title = "Share with twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a title = "Share with instagram" href="#"><i class="fa fa-instagram"></i></a></li>
+                        <li><a title = "Share with whatsapp" href="#"><i class="fa fa-whatsapp"></i></a></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li><a title="Get image link" target="_blank" href="{{ STATIC_URL }}{{name}}">
+                            <i class="fa fa-external-link"></i></a></li>
+                        <li><a title="Open image in a new tab" href="{{ STATIC_URL }}{{name}}" download="wordcloud.png">
+                            <i class="fa fa-download"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+<button type="button" id="share-btn" class="btn btn-primary">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" style="text-shadow:none;color:black" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div class="container">
+	    <div class="card" style="margin-bottom:.50rem;">
+                <!-- Default panel contents -->
+            <div class="card-header" style="padding:.25rem .50rem;text-align:center"><h5>Choose which you want to share?</h5></div>
+
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" style="padding:.25rem .75rem;">
+                        Your wordcloud
+                                <label class="switch ">
+          <input type="checkbox" class="primary">
+          <span class="slider"></span>
+        </label>
+                    </li>
+                    <li class="list-group-item" style="padding:.25rem .75rem;">
+                        Words you use most frequently
+                                <label class="switch ">
+          <input type="checkbox" class="primary">
+          <span class="slider"></span>
+        </label>
+                    </li>
+                    <li class="list-group-item" style="padding:.25rem .75rem;">
+                        2-Words Phrases you use most frequently
+                                <label class="switch ">
+          <input type="checkbox" class="primary">
+          <span class="slider"></span>
+        </label>
+                    </li>
+                    <li class="list-group-item" style="padding:.25rem .75rem;">
+                        3-Words Phrases you use most frequently
+                                <label class="switch ">
+          <input type="checkbox" class="primary">
+          <span class="slider"></span>
+        </label>
+                    </li>
+                    <li class="list-group-item" style="padding:.25rem .75rem;">
+                        All of it
+                                <label class="switch ">
+          <input type="checkbox" class="primary">
+          <span class="slider"></span>
+        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-auto" style="padding-left:0;">
+		  <h6 class="heading">Now, share with...</h6>
+		  <a href="javascript::;"><div class="twitter-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="facebook-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="google-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="linkedin-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="pinterest-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="instagram-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="tumblr-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="reddit-hover social-slide"></div></a>
+		  <a href="javascript::;"><div class="stumbleupon-hover social-slide"></div></a>
+		</div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="test2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="containerx">
+		<h1>Responsive Social Media Buttons</h1>
+		<ul>
+			<li><a href="#"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-skype" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+			<li><a href="#"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+			<div style="clear: both;"></div>
+		</ul>
+	</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#test2">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="tables" style="display:none;padding-bottom: 30px;padding-top: 30px;" class="row">
+    <div class="table-responsive table-striped col-md-4">
+        <caption><b>Words</b></caption>
+                <a href="https://www.facebook.com/bootsnipp"><i id="social-fb" class="fa fa-facebook-square ssocial"></i></a>
+	            <a href="https://twitter.com/bootsnipp"><i id="social-tw" class="fa fa-twitter-square ssocial"></i></a>
+	            <a href="https://plus.google.com/+Bootsnipp-page"><i id="social-gp" class="fa fa-google-plus-square ssocial"></i></a>
+	            <a href="mailto:bootsnipp@gmail.com"><i id="social-em" class="fa fa-envelope-square ssocial"></i></a>
+
+    <hr>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Word</th>
+                <th scope="col">Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dict in list_of_dicts %}
+            <tr>
+                {% for value in dict.values %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive table-striped col-md-4">
+        <caption><b>2-Word Phrases</b></caption>
+        <hr/>
+        <table>
+            <thead>
+            <tr>
+                <th scope="col">Phrase</th>
+                <th scope="col">Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dict in list_of_dicts2 %}
+            <tr>
+                {% for value in dict.values %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive table-striped col-md-4">
+        <caption><b>3-Word Phrases</b></caption>
+        <hr/>
+
+        <table>
+
+            <thead>
+            <tr>
+                <th scope="col">Word</th>
+                <th scope="col">Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for dict in list_of_dicts3 %}
+            <tr>
+                {% for value in dict.values %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+
+const shareBtn = document.getElementById('share-btn');
+const ogBtnContent = shareBtn.textContent;
+
+showMessage(shareBtn, navigator.share);
+
+shareBtn.addEventListener("click", async () => {
+  try {
+    await navigator.share({ title: "Example Page", url: "https://pbs.twimg.com/profile_images/1029057227343228928/ZJtkQKvr_bigger.jpg" });
+    console.log("Data was shared successfully");
+    showMessage(shareBtn, 'Thanks! 😄');
+  } catch (err) {
+    console.error("Share failed:", err.message);
+    showMessage(shareBtn, err.message);
+  }
+});
+
+
+
+
+function showMessage(element, msg) {
+  element.textContent = msg;
+  setTimeout(() => {
+    element.textContent = ogBtnContent;
+  }, 2000);
+}
+
+
+var control = ('{{control}}' == 'open')
+if(control){
+    $("#wordcloud").show();
+    $("#tables").show();
+
+	$('html, body').animate({ scrollTop: $('#wordcloud').offset().top }, 'slow');
+}
+
+function updateProgress(progressBarElement, progressBarMessageElement, progress) {
+  progressBarElement.style.width = progress.percent + "%";
+  var div = document.getElementById("progress-bar2");
+  div.innerHTML = '%' + progress.current;
+  if (progress.current == 100){
+    progressBarMessageElement.innerHTML = 'Final processing...';
+  }else{
+    progressBarMessageElement.innerHTML = 'It takes a while but worths it';
+    }
+}
+
+
+
+var trigger = document.getElementById('nick-button');
+trigger.addEventListener('click', function(e) {
+
+  var bar = document.getElementById("progress-bar2");
+  var barMessage = document.getElementById("progress-bar-message");
+
+
+    //we store out timerIdhere
+    var timeOutId = 0;
+    //we define our function and STORE it in a var
+    var ajaxFn = function () {
+
+            $.ajax({
+                type:"POST",
+                url: '/form',
+                data: {
+                    somedata: '5',
+                    moredata: 'moredata',
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                    },
+
+                success: function (response) {
+                console.log('rspns')
+                    if (response == 'bitti') {
+                        updateProgress(bar, barMessage, {current : 100, percent : 100})
+                        console.log('bitti')
+                        clearTimeout(timeOutId);//stop the timeout
+
+
+                    } else {//Fail check?
+                        console.log(response)
+                        timeOutId = setTimeout(ajaxFn, 1000);//set the timeout again
+                    updateProgress(bar, barMessage, {current : parseInt(response), percent : parseInt(response)})
+                    }
+                }
+            });
+    }
+    ajaxFn();
+
+})
+
+
+
+
+
+
+</script>
+
+{% endblock %}
