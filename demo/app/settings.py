@@ -72,6 +72,9 @@ STATIC_ROOT = ""
 # Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = "/static/"
 
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
