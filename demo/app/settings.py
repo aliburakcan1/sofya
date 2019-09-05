@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 import os
 import sys
-import django_heroku
+#import django_heroku
 
 
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -164,4 +164,4 @@ BOOTSTRAP4 = {
 }
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+#django_heroku.settings(locals())
