@@ -13,7 +13,7 @@ BOOTSTRAP4_FOLDER = os.path.abspath(os.path.join(BASE_DIR, "..", "bootstrap4"))
 if BOOTSTRAP4_FOLDER not in sys.path:
     sys.path.insert(0, BOOTSTRAP4_FOLDER)
 
-DEBUG = False
+DEBUG = True
 
 ADMINS = ()
 
