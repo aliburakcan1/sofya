@@ -46,7 +46,7 @@ class HomePageView(TemplateView):
         import demo.models
         tw = demo.models.UserTweets()
         #tw.save_unified_tweets("1", "sdas")
-        messages.info(self.request, tw.fetch_unified_tweets("1"))
+        messages.info(self.request, "olacak")
         return context
 
 
