@@ -1,2 +1,2 @@
 release: python manage.py migrate --noinput
-web: gunicorn --thread=2 demo.app.wsgi:application
+web: gunicorn --worker=1 --thread=1 demo.app.wsgi:application
