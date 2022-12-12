@@ -242,10 +242,10 @@ class DefaultFormView(FormView):
 
         #global tc
         #global yuzde
-        APIKEY = "5iEFuuc6VpxIdhOAWxmAru2bf"
-        APISECRETKEY = "S3PGe3Kof5UfCj0fWH1IzYdhwN0oig7QkotoEVsWjUwQWOjiL4"
-        ACCESSTOKEN = "2976696615-Lb5t9LIvcsdx8jWaWEr0eJZSWWwpdEj1hj1h5mP"
-        ACCESSTOKENSECRET = "kpUHw5UkLcPKXimhYMdrG8uVo5QXWrYvMDATnXICI1nGb"
+        APIKEY = "d"
+        APISECRETKEY = "c"
+        ACCESSTOKEN = "s-b"
+        ACCESSTOKENSECRET = "a"
         auth = tweepy.OAuthHandler(APIKEY, APISECRETKEY)
         auth.set_access_token(ACCESSTOKEN, ACCESSTOKENSECRET)
         api = tweepy.API(auth)
